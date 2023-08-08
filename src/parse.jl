@@ -101,10 +101,10 @@ function ZonedDateTime(str::AbstractString, format::AbstractString; locale::Abst
     ZonedDateTime(str, DateFormat(format, locale))
 end
 
-function ZonedDateTime(dt::String)
-    plus_index = findlast('+', dt)
-    tz_ind = isnothing(plus_index) ? findlast('-',dt) : plus_index
-    return ZonedDateTime( DateTime(dt[1:tz_ind-1]), TimeZone(dt[tz_ind:end]))
+function ZonedDateTime(str::AbstractString)
+    plus_index = findlast('+', str)
+    tz_ind = isnothing(plus_index) ? findlast('-',str) : plus_index
+    return ZonedDateTime( DateTime(str[1:tz_ind-1]), TimeZone(str[tz_ind:end]))
 end
 
 Dates.default_format(::Type{ZonedDateTime}) = ISOZonedDateTimeFormat
